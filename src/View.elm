@@ -1,18 +1,9 @@
 module View exposing (view)
 
-import Html exposing (Attribute, Html, br, div, input, p, text)
-import Html.Attributes exposing (placeholder, spellcheck, value)
-import Html.CssHelpers
-import Html.Events exposing (onInput)
-import Styles
-import Styles.Shared exposing (Classes(..), appNameSpace)
-import Types exposing (Model, Msg(..))
-import Util exposing (onEnter)
-
-
-{ id, class, classList } =
-    Html.CssHelpers.withNamespace appNameSpace
-
+import Html exposing (Html, p)
+import Html.Custom
+import Model exposing (Model)
+import Msg exposing (Msg(..))
 
 
 -- VIEW --
@@ -20,46 +11,23 @@ import Util exposing (onEnter)
 
 view : Model -> Html Msg
 view model =
-    div
-        [ class [ Card ] ]
-        [ header
-        , div
-            [ class [ CardBody ] ]
-            msg
+    [ Html.Custom.header
+        { text = "thank you"
+        , closability = Html.Custom.NotClosable
+        }
+    , Html.Custom.cardBody []
+        [ p
+            []
+            [ Html.text thanks ]
         ]
+    ]
+        |> Html.Custom.cardSolitary []
+        |> List.singleton
+        |> Html.Custom.main_ []
 
 
-header : Html Msg
-header =
-    div
-        [ class [ Header ] ]
-        [ text "Thank you" ]
-
-
-msg : List Html Msg
-msg =
-    []
-
-
-
--- COMPONENTS --
-
-
-title : Html Msg
-title =
-    p
-        [ class [ Point, Big ] ]
-        [ text "Elm Project : Go!" ]
-
-
-inputField : String -> Html Msg
-inputField str =
-    input
-        [ class [ Field ]
-        , value str
-        , onInput UpdateField
-        , placeholder "Press enter to console log msg"
-        , spellcheck False
-        , onEnter EnterHappened
-        ]
-        []
+thanks : String
+thanks =
+    """
+    Thanks a whole lot for that thing.
+    """

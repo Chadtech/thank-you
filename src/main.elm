@@ -1,9 +1,9 @@
 module Main exposing (..)
 
 import Html
-import Ports exposing (ReceiveMsg(..), SendMsg(..))
-import Types exposing (Model, Msg(..), init)
-import Util exposing ((&))
+import Model exposing (Model)
+import Msg exposing (Msg(..))
+import Tuple.Infix exposing ((&))
 import View exposing (view)
 
 
@@ -12,12 +12,17 @@ import View exposing (view)
 
 main : Program Never Model Msg
 main =
-    Html.program
-        { init = ( init, Cmd.none )
-        , view = view
-        , update = update
-        , subscriptions = subscriptions
-        }
+    { init = init
+    , view = view
+    , update = update
+    , subscriptions = subscriptions
+    }
+        |> Html.program
+
+
+init : ( Model, Cmd Msg )
+init =
+    {} & Cmd.none
 
 
 
@@ -26,7 +31,7 @@ main =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Ports.fromJs (HandleJsMsg << Ports.decodeReceiveMsg)
+    Sub.none
 
 
 
@@ -34,30 +39,7 @@ subscriptions _ =
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update message model =
-    case message of
-        UpdateField str ->
-            { model
-                | field = str
-            }
-                & Cmd.none
-
-        EnterHappened ->
-            { model
-                | timesEnterWasPressed =
-                    model.timesEnterWasPressed + 1
-            }
-                & Ports.sendToJs (ConsoleLog model.field)
-
-        HandleJsMsg (Ok receiveMsg) ->
-            handleRecieveMsg receiveMsg model
-
-        HandleJsMsg (Err err) ->
-            model & Cmd.none
-
-
-handleRecieveMsg : ReceiveMsg -> Model -> ( Model, Cmd Msg )
-handleRecieveMsg receiveMsg model =
-    case receiveMsg of
-        ConsoleLogHappened ->
+update msg model =
+    case msg of
+        Tick time ->
             model & Cmd.none
