@@ -42,7 +42,7 @@ header : String -> Html msg
 header message =
     Grid.row
         [ backgroundColor Colors.point0
-        , padding (px Style.spacingRegular)
+        , padding (px Style.spacingSmall)
         ]
         [ Grid.column
             []

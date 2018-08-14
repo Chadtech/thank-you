@@ -13,12 +13,13 @@ import View.Elements.Words as Words
 
 mainText : List ( List Style, String )
 mainText =
-    [ [ "main text goes here main text goes here main text goes here main text goes here main text goes here main text goes here "
-      , "main text goes here "
-      , "main text goes here "
+    [ [ "Hey"
+      , """
+        Bottom Text
+        """
       ]
         |> List.map ((,) [])
-    , [ ( [ marginBottom zero ], "best," )
+    , [ ( [ marginBottom zero ], "Best," )
       , ( [ marginBottom zero ], "-Chad" )
       ]
     ]
@@ -36,7 +37,7 @@ main =
         , minWidth (px 200)
         , minHeight (px 200)
         ]
-        [ Card.header "thank you"
+        [ Card.header "Thank you"
         , Card.body [ Words.viewInParagraphs mainText ]
         ]
         |> container
