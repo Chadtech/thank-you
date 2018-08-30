@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Main exposing (container, main, mainText)
 
 import Css exposing (..)
 import Html as H
@@ -6,6 +6,7 @@ import Html.Styled as Html exposing (Html, div)
 import View.Elements.Card as Card
 import View.Elements.Grid as Grid
 import View.Elements.Words as Words
+
 
 
 -- MAIN TEXT --
@@ -18,7 +19,7 @@ mainText =
         Bottom Text
         """
       ]
-        |> List.map ((,) [])
+        |> List.map (Tuple.pair [])
     , [ ( [ marginBottom zero ], "Best," )
       , ( [ marginBottom zero ], "-Chad" )
       ]
