@@ -2,7 +2,7 @@ module Main exposing (container, main, mainText)
 
 import Css exposing (..)
 import Html as H
-import Html.Styled as Html exposing (Html, div)
+import Html.Styled as Html exposing (Html)
 import View.Elements.Card as Card
 import View.Elements.Grid as Grid
 import View.Elements.Words as Words
@@ -14,17 +14,24 @@ import View.Elements.Words as Words
 
 mainText : List ( List Style, String )
 mainText =
-    [ [ "Hey"
-      , """
-        Bottom Text
-        """
-      ]
-        |> List.map (Tuple.pair [])
+    [ List.map (Tuple.pair []) [ greeting, message ]
     , [ ( [ marginBottom zero ], "Best," )
       , ( [ marginBottom zero ], "-Chad" )
       ]
     ]
         |> List.concat
+
+
+greeting : String
+greeting =
+    "Hey"
+
+
+message : String
+message =
+    """
+    Bottom Text
+    """
 
 
 
