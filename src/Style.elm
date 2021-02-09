@@ -1,7 +1,26 @@
-module Style exposing (..)
+module Style exposing
+    ( Speed(..)
+    , animation
+    , cannotSelect
+    , hfnss
+    , indent
+    , lineHeight
+    , noFontSmoothing
+    , noPaddingOrMargins
+    , outdent
+    , spacingBig
+    , spacingRegular
+    , spacingSmall
+    , speedToString
+    )
 
 import Css exposing (..)
 import Style.Colors as Colors
+
+
+lineHeight : Css.Style
+lineHeight =
+    Css.lineHeight <| Css.px 19
 
 
 indent : Style
@@ -89,3 +108,8 @@ spacingSmall =
 spacingRegular : Float
 spacingRegular =
     5
+
+
+spacingBig : Float
+spacingBig =
+    9

@@ -1,8 +1,7 @@
-module View.Elements.Words
-    exposing
-        ( view
-        , viewInParagraphs
-        )
+module View.Elements.Words exposing
+    ( view
+    , viewInParagraphs
+    )
 
 import Css exposing (..)
 import Html.Styled as Html exposing (Html, node)
@@ -18,7 +17,7 @@ view styles text =
             [ Style.hfnss
             , color Colors.point0
             , fontSize (px 32)
-            , lineHeight (px height)
+            , Style.lineHeight
             , Style.cannotSelect
             , Style.noPaddingOrMargins
             , Style.noFontSmoothing
@@ -26,11 +25,6 @@ view styles text =
             ]
         ]
         [ Html.text text ]
-
-
-height : Float
-height =
-    21
 
 
 viewInParagraphs : List ( List Style, String ) -> Html msg
@@ -47,7 +41,7 @@ viewParagraph ( styles, message ) =
 
 paragraphStyle : Style
 paragraphStyle =
-    [ marginBottom (px height)
+    [ marginBottom (px 21)
     , lastChild [ marginBottom zero ]
     ]
         |> Css.batch

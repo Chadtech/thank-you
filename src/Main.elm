@@ -1,68 +1,82 @@
-module Main exposing (container, main, mainText)
+module Main exposing (main)
 
-import Css exposing (..)
-import Html as H
-import Html.Styled as Html exposing (Html)
+import Css
+import Html
+import Html.Styled as H exposing (Html)
 import View.Elements.Card as Card
 import View.Elements.Grid as Grid
 import View.Elements.Words as Words
+
+
+headerMsg : String
+headerMsg =
+    "Thank you!"
+
+
+greeting : String
+greeting =
+    "Hello!"
+
+
+message : String
+message =
+    """
+    Message!
+        Message!    Message!    Message!    Message!    Message!
+
+            Message!
+                Message!
+                    Message!
+
+
+    """
 
 
 
 -- MAIN TEXT --
 
 
-mainText : List ( List Style, String )
+mainText : List ( List Css.Style, String )
 mainText =
     [ List.map (Tuple.pair []) [ greeting, message ]
-    , [ ( [ marginBottom zero ], "Best," )
-      , ( [ marginBottom zero ], "-Chad" )
+    , [ ( [ Css.marginBottom Css.zero ], "Best" )
+      , ( [ Css.marginBottom Css.zero ], "Chad" )
       ]
     ]
         |> List.concat
-
-
-greeting : String
-greeting =
-    "Hey"
-
-
-message : String
-message =
-    """
-    Bottom Text
-    """
 
 
 
 -- MAIN --
 
 
-main : H.Html msg
+main : Html.Html msg
 main =
     Card.view
-        [ maxWidth (px 600)
-        , minWidth (px 200)
-        , minHeight (px 200)
+        [ Css.maxWidth (Css.px 600)
+        , Css.minWidth (Css.px 200)
+        , Css.minHeight (Css.px 200)
         ]
-        [ Card.header "Thank you"
+        [ Card.header headerMsg
         , Card.body [ Words.viewInParagraphs mainText ]
         ]
         |> container
-        |> Html.toUnstyled
+        |> H.toUnstyled
 
 
 container : Html msg -> Html msg
 container mainContent =
     Grid.container
-        [ displayFlex
-        , justifyContent center
-        , height (vh 100)
+        [ Css.displayFlex
+        , Css.justifyContent Css.center
+        , Css.height (Css.vh 100)
         ]
         [ Grid.row
-            [ alignItems center ]
+            [ Css.alignItems Css.center
+            , Css.zIndex <| Css.int 1
+            ]
             [ Grid.column
-                [ flex none ]
+                [ Css.flex Css.none ]
                 [ mainContent ]
             ]
         ]

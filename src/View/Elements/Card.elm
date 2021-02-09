@@ -1,33 +1,30 @@
-module View.Elements.Card
-    exposing
-        ( body
-        , header
-        , view
-        )
+module View.Elements.Card exposing
+    ( body
+    , header
+    , view
+    )
 
-import Css exposing (..)
-import Html.Styled as Html
+import Css
+import Html.Styled as H
     exposing
         ( Attribute
         , Html
-        , h1
-        , section
         )
-import Html.Styled.Attributes exposing (css)
+import Html.Styled.Attributes as A
 import Style
 import Style.Colors as Colors
 import View.Elements.Grid as Grid
 import View.Elements.Words as Words
 
 
-view : List Style -> List (Html msg) -> Html msg
+view : List Css.Style -> List (Html msg) -> Html msg
 view styles children =
-    section
-        [ css
+    H.section
+        [ A.css
             [ Style.outdent
-            , boxSizing borderBox
-            , backgroundColor Colors.ignorable2
-            , padding (px Style.spacingSmall)
+            , Css.boxSizing Css.borderBox
+            , Css.backgroundColor Colors.ignorable2
+            , Css.padding (Css.px Style.spacingSmall)
             , Style.animation "card" Style.Fast
             , Css.batch styles
             ]
@@ -41,13 +38,15 @@ view styles children =
 header : String -> Html msg
 header message =
     Grid.row
-        [ backgroundColor Colors.point0
-        , padding (px Style.spacingSmall)
+        [ Css.backgroundColor Colors.point0
+        , Css.padding (Css.px Style.spacingBig)
+        , Css.margin (Css.px Style.spacingSmall)
+        , Style.lineHeight
         ]
         [ Grid.column
             []
             [ Words.view
-                [ color Colors.ignorable3 ]
+                [ Css.color Colors.ignorable3 ]
                 message
             ]
         ]
@@ -56,7 +55,7 @@ header message =
 body : List (Html msg) -> Html msg
 body children =
     Grid.row
-        [ padding (px Style.spacingSmall) ]
+        [ Css.padding (Css.px Style.spacingSmall) ]
         [ Grid.column
             []
             children
