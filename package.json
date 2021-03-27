@@ -1,7 +1,7 @@
 {
-  "name": "elm-gulp",
+  "name": "thank-you",
   "version": "1.0.0",
-  "description": "Gulp Elm Starter Project",
+  "description": "A template for making a thank you card website",
   "main": "gulpFile.js",
   "dependencies": {},
   "devDependencies": {
