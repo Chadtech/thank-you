@@ -10,25 +10,25 @@ import View.Elements.Words as Words
 
 headerMsg : String
 headerMsg =
-    "Thank you!"
+    "Thank you"
 
 
 greeting : String
 greeting =
-    "Hello!"
+    "Dear Friend"
 
 
 message : String
 message =
     """
     Message!
-        Message!    Message!    Message!    Message!    Message!
+    Message!
+    Message!
+    Message!
+    Message!
+    Message!
 
-            Message!
-                Message!
-                    Message!
-
-
+    
     """
 
 
@@ -58,7 +58,8 @@ main =
         , Css.minHeight (Css.px 200)
         ]
         [ Card.header headerMsg
-        , Card.body [ Words.viewInParagraphs mainText ]
+        , Card.body
+            [ Words.viewInParagraphs mainText ]
         ]
         |> container
         |> H.toUnstyled

@@ -20,7 +20,7 @@ import Style.Colors as Colors
 
 lineHeight : Css.Style
 lineHeight =
-    Css.lineHeight <| Css.px 19
+    Css.lineHeight <| Css.px 21
 
 
 indent : Style

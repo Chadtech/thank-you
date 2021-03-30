@@ -24,7 +24,7 @@ view styles children =
             [ Style.outdent
             , Css.boxSizing Css.borderBox
             , Css.backgroundColor Colors.ignorable2
-            , Css.padding (Css.px Style.spacingSmall)
+            , Css.padding (Css.px Style.spacingRegular)
             , Style.animation "card" Style.Fast
             , Css.batch styles
             ]
@@ -40,7 +40,6 @@ header message =
     Grid.row
         [ Css.backgroundColor Colors.point0
         , Css.padding (Css.px Style.spacingBig)
-        , Css.margin (Css.px Style.spacingSmall)
         , Style.lineHeight
         ]
         [ Grid.column
@@ -55,7 +54,7 @@ header message =
 body : List (Html msg) -> Html msg
 body children =
     Grid.row
-        [ Css.padding (Css.px Style.spacingSmall) ]
+        [ Css.padding (Css.px Style.spacingBig) ]
         [ Grid.column
             []
             children
